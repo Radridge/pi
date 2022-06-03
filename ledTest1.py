@@ -1,35 +1,29 @@
 import RPi.GPIO as GPIO
 import time
 
-LED_UNO = 17
-LED_DOS = 27
-LED_TRES = 22
-BUTTON_UNO = 26
+LED_LIST = [17, 27, 22]
+BUTTON = 26
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED_UNO, GPIO.OUT)
-GPIO.setup(LED_DOS, GPIO.OUT)
-GPIO.setup(LED_TRES, GPIO.OUT)
-GPIO.setup(BUTTON_UNO, GPIO.IN)
+for lit in LED_LIST:
+    GPIO.setup(lit, GPIO.OUT)
+GPIO.setup(BUTTON, GPIO.IN)
 
 while True:
-    bVal = GPIO.input(BUTTON_UNO)
+    bVal = GPIO.input(BUTTON)
     time.sleep(0.1)
     if bVal == 1:
-        GPIO.output(LED_UNO, GPIO.HIGH)
-        GPIO.output(LED_DOS, GPIO.LOW)
-        GPIO.output(LED_TRES, GPIO.HIGH)
-        time.sleep(0.5)
-        GPIO.output(LED_UNO, GPIO.LOW)
-        GPIO.output(LED_DOS, GPIO.HIGH)
-        GPIO.output(LED_TRES, GPIO.LOW)
-        time.sleep(0.5)
-        GPIO.output(LED_UNO, GPIO.HIGH)
-        GPIO.output(LED_DOS, GPIO.LOW)
-        GPIO.output(LED_TRES, GPIO.HIGH)
-        time.sleep(0.5)
-        GPIO.output(LED_UNO, GPIO.LOW)
-        GPIO.output(LED_DOS, GPIO.HIGH)
-        GPIO.output(LED_TRES, GPIO.LOW)
+        for lits in LED_LIST:
+            GPIO.output(lits, GPIO.HIGH)
+            time.sleep(0.5)
+            GPIO.output(lits, GPIO.LOW)
+            time.sleep(0.5)
+            GPIO.output(lits, GPIO.HIGH)
+            time.sleep(0.5)
+            GPIO.output(lits, GPIO.LOW)
+            time.sleep(0.5)
+            GPIO.output(lits, GPIO.HIGH)
+            time.sleep(0.5)
+            GPIO.output(lits, GPIO.LOW)
 
 GPIO.cleanup()
