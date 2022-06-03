@@ -18,12 +18,5 @@ while True:
             time.sleep(0.5)
             GPIO.output(lits, GPIO.LOW)
             time.sleep(0.5)
-            GPIO.output(lits, GPIO.HIGH)
-            time.sleep(0.5)
-            GPIO.output(lits, GPIO.LOW)
-            time.sleep(0.5)
-            GPIO.output(lits, GPIO.HIGH)
-            time.sleep(0.5)
-            GPIO.output(lits, GPIO.LOW)
 
 GPIO.cleanup()
